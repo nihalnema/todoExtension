@@ -1,0 +1,17 @@
+{
+    "name": "Todo",
+    "description": "Add notes and bookmarks",
+    "author": "Nihal, Shweta",
+    "key": "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDhwpzlyZmXIxF/l5hzWuuUw0uLvWv11r9vzdfiza/xOtp2Tz4JYzTlslCZdPbMsf0YEEBu/5apzC5z+BUEt27xL1GS0ptJ4FMLfNb8/smU47asrHIw1nV5RwMdilAzjzJeRK+4vjN0w1PAWNl35RzmwU0B5ZXN2p1DC/GAKGy0fErTRj8pVCSHxAY7/mS9T7h2tqjGH/VB0y4MVRv5mhuNhNIOEY/RrrTtIZrSya38mFHpnBNFf9kTbRGY561qdNTEbRMv33oe4KwO7aWEdl9KAc3k6rXdPajIPlNSwHTo6Y1OrRkpoZcatdpc0iOUJvuszXGklwkyaWJ9NhHAnCt/AgMBAAECggEAYkzS9FsrvVtPqzbe8puMKGJA6r+32nt/L7d5YRAeo/L0XL90S7IevkU+QxNiww5dHbU12R8BAz4cm/JRdJRKgkoQQtXhN/GtNztMgSyPqXzddaJAtnMrA3ugJ6Sp90lKrTFLMi3fSeAi/4WwazwfsXpJhaHp8JBYGXGB3kO70Xnbwhb6YOHN3Ne133R3G/mBiNjoPMawEjwloAEk5BxnuBEjfo+jSiejufmO/gqe0yOx39N4tJclJ3qIbonvoFy1VOKLPgh6ubySXuLL5WNplg8rcFIMbDWnG+wRvJtMW+HeUpgL9SNaNt4YAmH2ZHHraNeZR4j+nkucv4/FpfOiAQKBgQD4gP4ZigSmlJeJQDklwYlIF+MsKAusdOiGKdmOoNP/YgkRyXRoE9ZUvLA3XX/0iTITBF47Y7zkNb6kDA29gpLa/3w9BLhx07QuW68lt2rZP1VJiLKU8eLaaGkzJ6rzLKy8uuBp5KXsn3F7Ugrcw3FiXyXwR07dBzEJ9+ifUQXCIQKBgQDokfz2+UV0oc88Zhx1TwWL1jpScCge82syALVaoXbXu9/6+k4MmMlAYY6pXV/bfUfqCG6kNSiQ1RJnJzSGq/0NopCFfrrepdMHrlFHGg8xabBzbWUDcBvVwJ7RScGHRNRxXyK/qHYJsvUBPFplZzTGWXgeZxgIOAv3GgoCWmd5nwKBgGWjtMpTViWf/v7nIribmP/ArWzhEC1AP96n/VDF3Q/GVDlPMWpkOrS73EM43d3xw2Zd0gDugVLB3LCSMYiCgHhMKM94P8xmr3qKi2+cvnoO2l5SJ+CdspBsRiLjJZuCeUBUGveUynymli6/VqwG0DhQ/F5zfAERMPCH0kBfTkChAoGAEhzMhq+DKUIw0ZNiRACTfgCBKkpx1Xc/sfU8KoLIrqSDHRjBW1nK0qjGY4pSHNX089UUSNWbAyyU8lOrU5Gxc45lkv/7rbtcZAy/Z7ov1LlWdKbgZxQkFtGZjNMhr1c89FdkbWjBSKAXVLFOmPcgtRHiuPtuc7VpuSTeArDnviECgYAzf8I7/tQfgkbtl3gdfmygZjQXWvGV+FP59+hADQ2jJecQ6MLGu2/GIC2o0Bu3ib2KXRvc7eIg039QXahLMLUvy1teqHxCcJGNiorj0BEmHPV2Yi+x4zvueEAW8q0qs7tPuWMX+LDEo98gC5XqVN67f9BOuqtJeIQ1giXgMFVfxQ==",
+    "version": "1.0",
+    "permissions": ["tabs", "storage", "identity", "activeTab", "alarms"],
+    "manifest_version": 2,
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "images/icon16.png",
+            "48": "images/icon48.png",
+            "128": "images/icon128.png"
+        }
+    }
+}
