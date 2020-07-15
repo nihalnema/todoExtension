@@ -1,9 +1,17 @@
-.to_do{
-    color: green;
-    font-size: large;
-    padding: 10px;
+.homePage {
+  text-align: center;
+  margin: 10px;
 }
-.homePage{
-    align-items: center;
-    justify-content: center;
+
+.toDo {
+    color: black;
+    font-size: initial;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+}
+.toDo:hover {
+  background-color: darkgrey;
+  cursor: pointer;
+  color: dimgrey;
 }
