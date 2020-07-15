@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "A extension to add notes and bookmarks",
     "scripts": {
-        "clean": "del dist && cpy src/manifest.json dist && cpy src/assets/* dist  && cpy src/assets/images dist/images",
+        "clean": "del dist && cpy src/assets/* dist  && cpy src/assets/images dist/images",
         "prebuild": "npm run clean",
         "prewatch": "npm run clean",
         "build": "webpack --config webpack.prod.js",
