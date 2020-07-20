@@ -5,6 +5,13 @@
 $primary-color: darkblue;
 $background-color: #bada55;
 body {
-  background-color: #d9d7d7;
-  width: 300px;
+    background-color: #d9d7d7;
+    width: 300px;
+}
+
+.backButton {
+    margin-bottom: -4px;
+    width: 16px;
+    cursor: pointer;
+    padding-bottom: 2px;
 }

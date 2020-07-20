@@ -1,44 +1,61 @@
 import React from "react";
 import "./Notes.scss";
+import { NotesStorage } from "../storage/NotesStorage";
 
-type Props = {};
+let controller = new NotesStorage();
+type Props = { back: any };
 type State = { hidden: boolean; addedNote: string; notes: any };
 
-class ToDoList extends React.Component<Props, State> {
+class Notes extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
       hidden: false,
       addedNote: "",
-      notes: [
-        { id: 1, note: "Im going to add notes to my extension" },
-        { id: 2, note: "dkfjnori" },
-        { id: 3, note: "awugrydkfjnori" },
-        { id: 4, note: "dkfjnoriasyge" },
-        { id: 5, note: "dkfjns,dmfwori" },
-        { id: 6, note: "jxnvfdkfjnori" },
-      ],
+      notes: [],
     };
+    const loadNotes = async () => {
+      let notesArray: any = await controller.getNotes();
+      this.setState({ notes: notesArray });
+    };
+    loadNotes();
   }
 
   displayForm = (event) => {
     this.setState({ hidden: true });
   };
-  hideForm = (event) => {
+
+  hideForm = async (event) => {
+    let note = await controller.addNote(this.state.addedNote);
+    console.log(note);
     this.setState({ hidden: false });
-    console.log(this.state.addedNote);
     this.setState({ addedNote: "" });
   };
-  deleteNote = (id, event) => {};
+
+  deleteNote = async (id, event) => {
+    let rem=await controller.removeNote(id);
+    console.log(rem);
+  };
 
   handleChange = (event) => {
     this.setState({ addedNote: event.target.value });
   };
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    const loadNotes = async () => {
+      let notesArray: any = await controller.getNotes();
+      this.setState({ notes: notesArray });
+    };
+    loadNotes();
+  }
 
   render() {
     return (
       <div>
+        <div style={{ marginBottom: 5 }}>
+          <button onClick={this.props.back.bind(this, "homePage")}>
+            <img className="backButton" src="images/back.svg" />
+          </button>
+        </div>
         <div className="header">
           <div className="addNotes"> Add Notes</div>
           <div className="addNoteImage">
@@ -84,4 +101,4 @@ class ToDoList extends React.Component<Props, State> {
   }
 }
 
-export default ToDoList;
+export default Notes;

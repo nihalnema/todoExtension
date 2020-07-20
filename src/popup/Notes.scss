@@ -1,76 +1,85 @@
 .header {
-  overflow: auto;
-  margin: 2px 1px 2px 2px;
-  padding: 2%;
-}
-.addNotes {
-  color: black;
-  font-size: large;
-  float: left;
-  margin: 1%;
-  font-weight: bold;
-}
-.addNoteImage {
-  float: right;
+    overflow: auto;
+    margin: 2px 1px 2px 2px;
+    padding: 2%;
 }
 
-.addNoteImage > img:hover {
-  cursor: pointer;
-  width: 26px;
+.addNotes {
+    color: black;
+    font-size: large;
+    float: left;
+    margin: 1%;
+    font-weight: bold;
+}
+
+.addNoteImage {
+    float: right;
+}
+
+.addNoteImage>img {
+    width: 24px;
+}
+
+.addNoteImage>img:hover {
+    cursor: pointer;
+    width: 26px;
 }
 
 .form {
-  overflow: auto;
-  margin: 2px 1px 2px 2px;
+    overflow: auto;
+    margin: 2px 1px 2px 2px;
 }
 
 .textInput {
-  width: -webkit-fill-available;
-  border: solid grey 1px;
-  overflow: auto;
-  resize: none;
-  margin: 0px 8px 0px 5px;
+    width: -webkit-fill-available;
+    border: solid grey 1px;
+    overflow: auto;
+    resize: none;
+    margin: 0px 8px 0px 5px;
 }
+
 .addButton {
-  float: right;
-  font-size: inherit;
-  background-color: #1313eaa1;
-  border: none;
-  color: white;
-  padding: 6px 14px;
-  text-align: center;
-  font-size: 14px;
-  margin: 0px 8px 8px 0px;
-  cursor: pointer;
+    float: right;
+    font-size: inherit;
+    background-color: #1313eaa1;
+    border: none;
+    color: white;
+    padding: 6px 14px;
+    text-align: center;
+    font-size: 14px;
+    margin: 0px 8px 8px 0px;
+    cursor: pointer;
 }
 
 .menu {
-  height: fit-content;
-  max-height: 180px;
-  overflow: auto;
+    height: fit-content;
+    max-height: 180px;
+    overflow: auto;
 }
 
 .menuItems {
-  margin: 2px 8px 2px 2px;
-  border: solid grey 1px;
-  overflow: auto;
-  padding: 5px;
-  font-size: 16px;
+    margin: 2px 8px 7px 2px;
+    border: solid 1px;
+    border-color: darkgrey;
+    border-radius: 0%;
+    overflow: auto;
+    padding: 5px;
+    font-size: 16px;
 }
 
 .menuText {
-  width: 85%;
-  float: left;
-  overflow: hidden;
+    width: 87%;
+    float: left;
+    overflow: hidden;
 }
 
 .menuImage {
-  display: inline-grid;
-  margin-left: 11px;
-  width: 14px;
+    display: inline-grid;
+    margin-left: 11px;
+    width: 14px;
 }
 
 .menuImage:hover {
-  cursor: pointer;
-  width: 16px;
+    cursor: pointer;
+    width: 16px;
 }

@@ -7,11 +7,7 @@ import HomePage from "./HomePage";
 // Componect class for Home page.
 class Popup extends React.Component {
   render() {
-    return (
-      <div>
-        <HomePage />
-      </div>
-    );
+    return <HomePage />;
   }
 }
 
