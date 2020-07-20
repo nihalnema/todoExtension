@@ -81,7 +81,10 @@ export class NotesStorage {
       // get the array of notes from local database
       chrome.storage.local.get(["notes"], function (result) {
         // return array in promise to get it use await
-        resolve(result.notes);
+        if(result.notes==undefined)
+          resolve([]);
+        else
+          resolve(result.notes);
       });
     });
   }

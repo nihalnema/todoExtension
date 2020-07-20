@@ -17,6 +17,7 @@ class Notes extends React.Component<Props, State> {
     const loadNotes = async () => {
       let notesArray: any = await controller.getNotes();
       this.setState({ notes: notesArray });
+      console.log(notesArray);
     };
     loadNotes();
   }
@@ -26,14 +27,16 @@ class Notes extends React.Component<Props, State> {
   };
 
   hideForm = async (event) => {
-    let note = await controller.addNote(this.state.addedNote);
-    console.log(note);
+    if (this.state.addedNote != "") {
+      let note = await controller.addNote(this.state.addedNote);
+      console.log(note);
+      this.setState({ addedNote: "" });
+    }
     this.setState({ hidden: false });
-    this.setState({ addedNote: "" });
   };
 
   deleteNote = async (id, event) => {
-    let rem=await controller.removeNote(id);
+    let rem = await controller.removeNote(id);
     console.log(rem);
   };
 
