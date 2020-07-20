@@ -1,6 +1,6 @@
 .header {
     overflow: auto;
-    margin: 2px 1px 2px 2px;
+    margin: 2px 1px 2px -8px;
     padding: 2%;
 }
 
@@ -8,11 +8,12 @@
     color: black;
     font-size: large;
     float: left;
-    margin: 1%;
+    margin: 2%;
     font-weight: bold;
 }
 
 .addNoteImage {
+    margin-top: 5px;
     float: right;
 }
 

@@ -87,6 +87,7 @@ class Notes extends React.Component<Props, State> {
         ) : (
           <></>
         )}
+        {this.state.notes.length>0 ?
         <div className="menu">
           {this.state.notes.map((item) => (
             <div className="menuItems" key={item.id}>
@@ -99,6 +100,8 @@ class Notes extends React.Component<Props, State> {
             </div>
           ))}
         </div>
+        :<div style={{ height: 62, fontWeight:600, fontSize:13 }}>Looks like you dont have any notes, click on add notes icon to add some.</div>
+        }
       </div>
     );
   }
