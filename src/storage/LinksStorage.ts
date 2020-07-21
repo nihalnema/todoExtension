@@ -82,6 +82,9 @@ export class LinksStorage {
         // get the array of links from local database
         chrome.storage.local.get(["links"], function (result) {
           // return array in promise to get it use await
+          if(result.links==undefined)
+          resolve([]);
+        else
           resolve(result.links);
         });
       });
