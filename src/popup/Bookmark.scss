@@ -1,0 +1,94 @@
+.header {
+  overflow: auto;
+  margin: 2px 1px 2px -8px;
+  padding: 2%;
+}
+
+.addNotes {
+  color: black;
+  font-size: large;
+  float: left;
+  margin: 2%;
+  font-weight: bold;
+}
+
+.addNoteImage {
+  margin-top: 5px;
+  float: right;
+}
+
+.addNoteImage > img {
+  width: 24px;
+}
+
+.addNoteImage > img:hover {
+  cursor: pointer;
+  width: 26px;
+}
+
+.form {
+  overflow: auto;
+  margin: 2px 1px 2px 2px;
+}
+
+#title {
+  width: 70%;
+}
+#url {
+  width: 70%;
+}
+#titleLable {
+  margin: 16px;
+}
+#urlLable {
+  margin: 4px;
+}
+
+.addButton {
+  float: right;
+  font-size: inherit;
+  background-color: #1313eaa1;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  text-align: center;
+  font-size: 14px;
+  margin: 0px 8px 8px 0px;
+  cursor: pointer;
+}
+
+.menu {
+  height: fit-content;
+  max-height: 180px;
+  overflow: auto;
+}
+
+.menuItems {
+  margin: 2px 8px 7px 2px;
+  border: solid 1px;
+  border-color: darkgrey;
+  border-radius: 0%;
+  overflow: auto;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.menuText {
+  width: 87%;
+  float: left;
+  overflow: hidden;
+  text-decoration: none;
+}
+.menuText:hover {
+  cursor: pointer;
+}
+.menuImage {
+  display: inline-grid;
+  margin-left: 11px;
+  width: 14px;
+}
+
+.menuImage:hover {
+  cursor: pointer;
+  width: 16px;
+}
