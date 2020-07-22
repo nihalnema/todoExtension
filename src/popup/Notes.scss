@@ -52,13 +52,13 @@
     cursor: pointer;
 }
 
-.menu {
+.note {
     height: fit-content;
     max-height: 180px;
     overflow: auto;
 }
 
-.menuItems {
+.noteItems {
     margin: 2px 8px 7px 2px;
     border: solid 1px;
     border-color: darkgrey;
@@ -68,7 +68,7 @@
     font-size: 16px;
 }
 
-.menuText {
+.noteText {
     font-size: 14px;
     white-space: pre-wrap;
     width: 87%;
@@ -76,13 +76,13 @@
     overflow: hidden;
 }
 
-.menuImage {
+.noteImage {
     display: inline-grid;
     margin-left: 11px;
     width: 14px;
 }
 
-.menuImage:hover {
+.noteImage:hover {
     cursor: pointer;
     width: 16px;
 }

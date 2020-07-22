@@ -31,8 +31,8 @@ class Notes extends React.Component<Props, State> {
       let note = await controller.addNote(this.state.addedNote);
       console.log(note);
       this.setState({ addedNote: "" });
+      this.setState({ hidden: false });
     }
-    this.setState({ hidden: false });
   };
 
   deleteNote = async (id, event) => {
@@ -43,6 +43,7 @@ class Notes extends React.Component<Props, State> {
   handleChange = (event) => {
     this.setState({ addedNote: event.target.value });
   };
+
   componentDidUpdate() {
     const loadNotes = async () => {
       let notesArray: any = await controller.getNotes();
@@ -53,9 +54,13 @@ class Notes extends React.Component<Props, State> {
 
   render() {
     return (
-      <div  style={{ width:300}}>
+      <div style={{ width: 300 }}>
         <div>
-            <img onClick={this.props.back.bind(this, "homePage")} className="backButton" src="images/back.png" />
+          <img
+            onClick={this.props.back.bind(this, "homePage")}
+            className="backButton"
+            src="images/back.png"
+          />
         </div>
         <div className="header">
           <div className="addNotes"> Add Notes</div>
@@ -74,6 +79,12 @@ class Notes extends React.Component<Props, State> {
                 onChange={this.handleChange}
               ></textarea>
               <button
+                className="cancelButton"
+                onClick={() => this.setState({ hidden: false })}
+              >
+                CANCEL
+              </button>
+              <button
                 className="addButton"
                 id="addButton"
                 onClick={this.hideForm.bind(this)}
@@ -85,21 +96,25 @@ class Notes extends React.Component<Props, State> {
         ) : (
           <></>
         )}
-        {this.state.notes.length>0 ?
-        <div className="menu">
-          {this.state.notes.map((item) => (
-            <div className="menuItems" key={item.id}>
-              <div className="menuText">{item.note}</div>
-              <img
-                onClick={this.deleteNote.bind(this, item.id)}
-                className="menuImage"
-                src="images/cancel.png"
-              />
-            </div>
-          ))}
-        </div>
-        :<div style={{ height: 62, fontWeight:600, fontSize:13 }}>Looks like you dont have any notes, click on add notes icon to add some.</div>
-        }
+        {this.state.notes.length > 0 ? (
+          <div className="note">
+            {this.state.notes.map((item) => (
+              <div className="noteItems" key={item.id}>
+                <div className="noteText">{item.note}</div>
+                <img
+                  onClick={this.deleteNote.bind(this, item.id)}
+                  className="noteImage"
+                  src="images/cancel.png"
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div style={{ height: 62, fontWeight: 600, fontSize: 13 }}>
+            Looks like you dont have any notes, click on add notes icon to add
+            some.
+          </div>
+        )}
       </div>
     );
   }
