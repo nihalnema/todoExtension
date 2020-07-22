@@ -34,14 +34,23 @@
 #title {
   width: 70%;
 }
+
 #url {
   width: 70%;
 }
+
 #titleLable {
-  margin: 16px;
+  margin: 19px;
 }
+
 #urlLable {
   margin: 4px;
+}
+
+.alertMessage {
+  color: red;
+  display: inline-block;
+  margin-left: 5px;
 }
 
 .addButton {
@@ -57,38 +66,51 @@
   cursor: pointer;
 }
 
-.menu {
+.cancelButton {
+  float: right;
+  background-color: #a9a9a9b8;
+  border: none;
+  color: black;
+  padding: 6px 14px;
+  text-align: center;
+  font-size: 14px;
+  margin: 0px 8px 8px 0px;
+  cursor: pointer;
+}
+
+.link {
   height: fit-content;
   max-height: 180px;
   overflow: auto;
 }
 
-.menuItems {
+.linkItems {
   margin: 2px 8px 7px 2px;
-  border: solid 1px;
-  border-color: darkgrey;
-  border-radius: 0%;
   overflow: auto;
   padding: 5px;
   font-size: 16px;
 }
 
-.menuText {
+.linkText {
   width: 87%;
   float: left;
   overflow: hidden;
   text-decoration: none;
+  margin-left: 5px;
 }
-.menuText:hover {
+
+.linkText:hover {
   cursor: pointer;
+  color: blue;
 }
-.menuImage {
+
+.linkImage {
   display: inline-grid;
   margin-left: 11px;
   width: 14px;
 }
 
-.menuImage:hover {
+.linkImage:hover {
   cursor: pointer;
   width: 16px;
 }

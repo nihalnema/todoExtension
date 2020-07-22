@@ -9,6 +9,7 @@ type State = {
   bookmarkTitle: string;
   bookmarkurl: string;
   bookmarks: any;
+  alertMessage: boolean;
 };
 
 class Bookmarks extends React.Component<Props, State> {
@@ -19,7 +20,9 @@ class Bookmarks extends React.Component<Props, State> {
       bookmarkTitle: "",
       bookmarkurl: "",
       bookmarks: [],
+      alertMessage: false,
     };
+
     const loadLinks = async () => {
       let bookmarksArray: any = await controller.getLinks();
       this.setState({ bookmarks: bookmarksArray });
@@ -32,17 +35,28 @@ class Bookmarks extends React.Component<Props, State> {
     this.setState({ hidden: true });
   };
 
+  isValidURL = (str) => {
+    var res = str.match(
+      /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+    );
+    return res !== null;
+  };
+
   submitForm = async (event) => {
     if (this.state.bookmarkTitle != "" && this.state.bookmarkurl != "") {
-      let note = await controller.addLink(
-        this.state.bookmarkTitle,
-        this.state.bookmarkurl
-      );
-      console.log(note);
-      this.setState({ bookmarkTitle: "" });
-      this.setState({ bookmarkurl: "" });
+      if (this.isValidURL(this.state.bookmarkurl)) {
+        let url = this.state.bookmarkurl;
+        if (!url.includes("https://")) {
+          url = "https://" + url;
+        }
+        this.setState({ alertMessage: false });
+        let note = await controller.addLink(this.state.bookmarkTitle, url);
+        this.setState({ hidden: false });
+        console.log(note);
+        this.setState({ bookmarkTitle: "" });
+        this.setState({ bookmarkurl: "" });
+      } else this.setState({ alertMessage: true });
     }
-    this.setState({ hidden: false });
   };
 
   deleteLink = async (id, event) => {
@@ -53,12 +67,15 @@ class Bookmarks extends React.Component<Props, State> {
   updateTitle = (event) => {
     this.setState({ bookmarkTitle: event.target.value });
   };
+
   updateurl = (event) => {
     this.setState({ bookmarkurl: event.target.value });
   };
+
   openLink = (url, event) => {
     chrome.tabs.create({ url: url, active: false });
   };
+
   componentDidUpdate() {
     const loadLinks = async () => {
       let bookmarksArray: any = await controller.getLinks();
@@ -82,18 +99,37 @@ class Bookmarks extends React.Component<Props, State> {
         {this.state.hidden ? (
           <>
             <div className="form">
-              <label id="titleLable">TITLE :</label>
+              <label id="titleLable">Title :</label>
               <input
                 type="text"
                 id="title"
                 onChange={this.updateTitle}
+                placeholder="title"
               ></input>{" "}
               <br></br>
               <br></br>
               <label id="urlLable">Enter Link :</label>
-              <input type="url" id="url" onChange={this.updateurl}></input>
+              <input
+                type="url"
+                id="url"
+                onChange={this.updateurl}
+                placeholder="https://example.com"
+              ></input>
               <br></br>
               <br></br>
+              {this.state.alertMessage ? (
+                <div className="alertMessage">Enter Valid URL</div>
+              ) : (
+                <></>
+              )}
+              <button
+                className="cancelButton"
+                onClick={() =>
+                  this.setState({ hidden: false, alertMessage: false })
+                }
+              >
+                CANCEL
+              </button>
               <button
                 className="addButton"
                 id="addButton"
@@ -107,18 +143,18 @@ class Bookmarks extends React.Component<Props, State> {
           <></>
         )}
         {this.state.bookmarks.length > 0 ? (
-          <div className="menu">
+          <div className="link">
             {this.state.bookmarks.map((item) => (
-              <div className="menuItems" key={item.id}>
+              <div className="linkItems" key={item.id}>
                 <div
-                  className="menuText"
+                  className="linkText"
                   onClick={this.openLink.bind(this, item.url)}
                 >
                   {item.title}
                 </div>
                 <img
                   onClick={this.deleteLink.bind(this, item.id)}
-                  className="menuImage"
+                  className="linkImage"
                   src="images/cancel.png"
                 />
               </div>
