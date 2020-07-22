@@ -64,11 +64,13 @@
     border-color: darkgrey;
     border-radius: 0%;
     overflow: auto;
-    padding: 5px;
+    padding: 0px 0px 0px 5px;
     font-size: 16px;
 }
 
 .menuText {
+    font-size: 14px;
+    white-space: pre-wrap;
     width: 87%;
     float: left;
     overflow: hidden;

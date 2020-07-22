@@ -53,11 +53,9 @@ class Notes extends React.Component<Props, State> {
 
   render() {
     return (
-      <div>
-        <div style={{ marginBottom: 5 }}>
-          <button onClick={this.props.back.bind(this, "homePage")}>
-            <img className="backButton" src="images/back.svg" />
-          </button>
+      <div  style={{ width:300}}>
+        <div>
+            <img onClick={this.props.back.bind(this, "homePage")} className="backButton" src="images/back.png" />
         </div>
         <div className="header">
           <div className="addNotes"> Add Notes</div>
