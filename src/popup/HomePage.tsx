@@ -2,7 +2,7 @@
 
 import React from "react";
 import "./HomePage.scss";
-import Notes from "./Notes";
+import NotesFolder from "./NotesFolder";
 import Bookmarks from "./Bookmarks";
 type Props = {};
 type State = { pageType: string };
@@ -53,7 +53,7 @@ class HomePage extends React.Component<Props, State> {
     } else if (this.state.pageType == "notes") {
       return (
         <div>
-          <Notes back={this.popupMenu} />
+          <NotesFolder back={this.popupMenu} />
         </div>
       );
     } else if (this.state.pageType == "bookmarks") {
