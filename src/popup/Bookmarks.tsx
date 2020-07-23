@@ -3,7 +3,7 @@ import "./Bookmark.scss";
 import { LinksStorage } from "../storage/LinksStorage";
 
 let controller = new LinksStorage();
-type Props = { back: any };
+type Props = { back: any,folderId:number };
 type State = {
   hidden: boolean;
   bookmarkTitle: string;
@@ -24,7 +24,7 @@ class Bookmarks extends React.Component<Props, State> {
     };
 
     const loadLinks = async () => {
-      let bookmarksArray: any = await controller.getLinks();
+      let bookmarksArray: any = await controller.getLinks(this.props.folderId);
       this.setState({ bookmarks: bookmarksArray });
       console.log(bookmarksArray);
     };
@@ -50,7 +50,7 @@ class Bookmarks extends React.Component<Props, State> {
           url = "https://" + url;
         }
         this.setState({ alertMessage: false });
-        let note = await controller.addLink(this.state.bookmarkTitle, url);
+        let note = await controller.addLink(this.props.folderId,this.state.bookmarkTitle, url);
         this.setState({ hidden: false });
         console.log(note);
         this.setState({ bookmarkTitle: "" });
@@ -60,7 +60,7 @@ class Bookmarks extends React.Component<Props, State> {
   };
 
   deleteLink = async (id, event) => {
-    let rem = await controller.removeLink(id);
+    let rem = await controller.removeLink(this.props.folderId,id);
     console.log(rem);
   };
 
@@ -78,7 +78,7 @@ class Bookmarks extends React.Component<Props, State> {
 
   componentDidUpdate() {
     const loadLinks = async () => {
-      let bookmarksArray: any = await controller.getLinks();
+      let bookmarksArray: any = await controller.getLinks(this.props.folderId);
       this.setState({ bookmarks: bookmarksArray });
     };
     loadLinks();
@@ -88,7 +88,7 @@ class Bookmarks extends React.Component<Props, State> {
     return (
       <div style={{ width:300}}>
         <div>
-            <img onClick={this.props.back.bind(this, "homePage")} className="backButton" src="images/back.png" />
+            <img onClick={this.props.back.bind(this, undefined)} className="backButton" src="images/back.png" />
         </div>
         <div className="header">
           <div className="addNotes"> Add Bookmarks</div>
