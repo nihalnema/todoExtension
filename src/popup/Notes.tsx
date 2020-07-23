@@ -3,7 +3,7 @@ import "./Notes.scss";
 import { NotesStorage } from "../storage/NotesStorage";
 
 let controller = new NotesStorage();
-type Props = { back: any };
+type Props = { back: any , folderId:number };
 type State = { hidden: boolean; addedNote: string; notes: any };
 
 class Notes extends React.Component<Props, State> {
@@ -15,7 +15,7 @@ class Notes extends React.Component<Props, State> {
       notes: [],
     };
     const loadNotes = async () => {
-      let notesArray: any = await controller.getNotes();
+      let notesArray: any = await controller.getNotes(this.props.folderId);
       this.setState({ notes: notesArray });
       console.log(notesArray);
     };
@@ -28,7 +28,7 @@ class Notes extends React.Component<Props, State> {
 
   hideForm = async (event) => {
     if (this.state.addedNote != "") {
-      let note = await controller.addNote(this.state.addedNote);
+      let note = await controller.addNote(this.props.folderId,this.state.addedNote);
       console.log(note);
       this.setState({ addedNote: "" });
       this.setState({ hidden: false });
@@ -36,7 +36,7 @@ class Notes extends React.Component<Props, State> {
   };
 
   deleteNote = async (id, event) => {
-    let rem = await controller.removeNote(id);
+    let rem = await controller.removeNote(this.props.folderId,id);
     console.log(rem);
   };
 
@@ -46,7 +46,7 @@ class Notes extends React.Component<Props, State> {
 
   componentDidUpdate() {
     const loadNotes = async () => {
-      let notesArray: any = await controller.getNotes();
+      let notesArray: any = await controller.getNotes(this.props.folderId);
       this.setState({ notes: notesArray });
     };
     loadNotes();
@@ -57,7 +57,7 @@ class Notes extends React.Component<Props, State> {
       <div style={{ width: 300 }}>
         <div>
           <img
-            onClick={this.props.back.bind(this, "homePage")}
+            onClick={this.props.back.bind(this, undefined)}
             className="backButton"
             src="images/back.png"
           />
