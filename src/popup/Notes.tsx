@@ -3,7 +3,7 @@ import "./Notes.scss";
 import { NotesStorage } from "../storage/NotesStorage";
 
 let controller = new NotesStorage();
-type Props = { back: any , folderId:number };
+type Props = { back: any , folderId:number,folderName:string };
 type State = { hidden: boolean; addedNote: string; notes: any };
 
 class Notes extends React.Component<Props, State> {
@@ -63,7 +63,7 @@ class Notes extends React.Component<Props, State> {
           />
         </div>
         <div className="header">
-          <div className="addNotes"> Add Notes</div>
+          <div className="addNotes">{this.props.folderName} Notes</div>
           <div className="addNoteImage">
             <img onClick={this.displayForm.bind(this)} src="images/addNote.png" />
           </div>

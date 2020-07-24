@@ -1,5 +1,6 @@
 import React from "react";
 import "./Notes.scss";
+import "./Folder.scss"
 import { LinksStorage } from "../storage/LinksStorage";
 import Bookmarks from "./Bookmarks";
 
@@ -11,6 +12,8 @@ type State = {
   folder: any;
   pageType: string;
   folderId: number;
+  folderName: string;
+
 };
 
 class BookmarksFolder extends React.Component<Props, State> {
@@ -22,6 +25,7 @@ class BookmarksFolder extends React.Component<Props, State> {
       folder: [],
       pageType: "folder",
       folderId: undefined,
+      folderName: undefined,
     };
 
     const loadFolders = async () => {
@@ -32,16 +36,18 @@ class BookmarksFolder extends React.Component<Props, State> {
     loadFolders();
   }
 
-  viewLinks = (id, event) => {
+  viewLinks = (id,name, event) => {
     if (id != undefined) {
       this.setState((prevState) => ({
         pageType: "links",
         folderId: id,
+        folderName:name
       }));
     } else {
       this.setState((prevState) => ({
         pageType: "folder",
         folderId: undefined,
+        folderName:undefined
       }));
     }
   };
@@ -88,7 +94,7 @@ class BookmarksFolder extends React.Component<Props, State> {
             />
           </div>
           <div className="header">
-            <div className="addNotes"> Add Folders</div>
+            <div className="addNotes">Link Folders</div>
             <div className="addNoteImage">
               <img onClick={this.displayForm.bind(this)} src="images/addFolder.png" />
             </div>
@@ -124,16 +130,17 @@ class BookmarksFolder extends React.Component<Props, State> {
           {this.state.folder.length > 0 ? (
             <div className="note">
               {this.state.folder.map((item) => (
-                <div className="noteItems" key={item.id}>
+                <div className="folderItems" key={item.id}>
+                  <img className="folderImage" src="images/folder.png"/>
                   <div
-                    className="noteText"
-                    onClick={this.viewLinks.bind(this, item.id)}
+                    className="folderText"
+                    onClick={this.viewLinks.bind(this, item.id,item.folderName)}
                   >
                     {item.folderName}
                   </div>
                   <img
                     onClick={this.deleteFolder.bind(this, item.id)}
-                    className="noteImage"
+                    className="cancelImage"
                     src="images/cancel.png"
                   />
                 </div>
@@ -149,7 +156,7 @@ class BookmarksFolder extends React.Component<Props, State> {
       );
     }else{
         return(
-            <Bookmarks back={this.viewLinks} folderId={this.state.folderId}/>
+            <Bookmarks back={this.viewLinks} folderId={this.state.folderId} folderName={this.state.folderName}/>
         )
     }
   }

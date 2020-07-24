@@ -3,7 +3,7 @@ import "./Bookmark.scss";
 import { LinksStorage } from "../storage/LinksStorage";
 
 let controller = new LinksStorage();
-type Props = { back: any,folderId:number };
+type Props = { back: any,folderId:number, folderName:string };
 type State = {
   hidden: boolean;
   bookmarkTitle: string;
@@ -91,7 +91,7 @@ class Bookmarks extends React.Component<Props, State> {
             <img onClick={this.props.back.bind(this, undefined)} className="backButton" src="images/back.png" />
         </div>
         <div className="header">
-          <div className="addNotes"> Add Bookmarks</div>
+          <div className="addNotes">{this.props.folderName} Links</div>
           <div className="addNoteImage">
             <img onClick={this.displayForm.bind(this)} src="images/addBookmark.png" />
           </div>
