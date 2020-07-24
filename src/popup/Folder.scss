@@ -1,0 +1,42 @@
+.folder{
+    height: fit-content;
+    max-height: 180px;
+    overflow: auto;
+}
+.folderItems{
+    margin: 2px 8px 7px 2px;
+    overflow: auto;
+    padding: 0px 0px 0px 5px;
+    font-size: 16px;
+}
+
+.folderImage{
+    float: left;
+    width: 18px;
+    margin-right: 3px;
+}
+
+.folderText{
+    padding-left: 5px;
+    font-size: 14px;
+    white-space: pre-wrap;
+    width: 80%;
+    float: left;
+    overflow: hidden;
+}
+
+.folderText:hover{
+    cursor: pointer;
+    background-color: #3c382a3d;
+}
+
+.cancelImage {
+    display: inline-grid;
+    margin-left: 11px;
+    width: 14px;
+}
+
+.cancelImage:hover {
+    cursor: pointer;
+    width: 16px;
+}
