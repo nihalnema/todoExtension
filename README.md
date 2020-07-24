@@ -1,2 +1,2 @@
 # todoExtension
-Extension to add Todo and Notes
+Extension to add Notes and Link
