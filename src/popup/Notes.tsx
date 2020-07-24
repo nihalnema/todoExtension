@@ -65,7 +65,7 @@ class Notes extends React.Component<Props, State> {
         <div className="header">
           <div className="addNotes"> Add Notes</div>
           <div className="addNoteImage">
-            <img onClick={this.displayForm.bind(this)} src="images/add.png" />
+            <img onClick={this.displayForm.bind(this)} src="images/addNote.png" />
           </div>
         </div>
         {this.state.hidden ? (

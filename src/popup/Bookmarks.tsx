@@ -93,7 +93,7 @@ class Bookmarks extends React.Component<Props, State> {
         <div className="header">
           <div className="addNotes"> Add Bookmarks</div>
           <div className="addNoteImage">
-            <img onClick={this.displayForm.bind(this)} src="images/add.png" />
+            <img onClick={this.displayForm.bind(this)} src="images/addBookmark.png" />
           </div>
         </div>
         {this.state.hidden ? (
