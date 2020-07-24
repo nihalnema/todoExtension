@@ -1,7 +1,9 @@
+// styling sheet for Notes.tsx
+// imported in NotesFolder.tsx, BookmarkFolder.tsx
 .header {
-    overflow: auto;
-    margin: 2px 1px 2px -8px;
-    padding: 2%;
+  overflow: auto;
+  margin: 2px 1px 2px -8px;
+  padding: 2%;
 }
 
 .addNotes {
@@ -15,76 +17,76 @@
 }
 
 .addNoteImage {
-    margin-top: 5px;
-    float: right;
+  margin-top: 5px;
+  float: right;
 }
 
-.addNoteImage>img {
-    width: 24px;
+.addNoteImage > img {
+  width: 24px;
 }
 
-.addNoteImage>img:hover {
-    cursor: pointer;
-    width: 26px;
+.addNoteImage > img:hover {
+  cursor: pointer;
+  width: 26px;
 }
 
 .form {
-    overflow: auto;
-    margin: 2px 1px 2px 2px;
+  overflow: auto;
+  margin: 2px 1px 2px 2px;
 }
 
 .textInput {
-    width: -webkit-fill-available;
-    border: solid grey 1px;
-    overflow: auto;
-    resize: none;
-    margin: 0px 8px 0px 5px;
+  width: -webkit-fill-available;
+  border: solid grey 1px;
+  overflow: auto;
+  resize: none;
+  margin: 0px 8px 0px 5px;
 }
 
 .addButton {
-    float: right;
-    font-size: inherit;
-    background-color: #1313eaa1;
-    border: none;
-    color: white;
-    padding: 6px 14px;
-    text-align: center;
-    font-size: 14px;
-    margin: 0px 8px 8px 0px;
-    cursor: pointer;
+  float: right;
+  font-size: inherit;
+  background-color: #1313eaa1;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  text-align: center;
+  font-size: 14px;
+  margin: 0px 8px 8px 0px;
+  cursor: pointer;
 }
 
 .note {
-    height: fit-content;
-    max-height: 180px;
-    overflow: auto;
+  height: fit-content;
+  max-height: 180px;
+  overflow: auto;
 }
 
 .noteItems {
-    margin: 2px 8px 7px 2px;
-    border: solid 1px;
-    border-color: darkgrey;
-    border-radius: 0%;
-    overflow: auto;
-    padding: 0px 0px 0px 5px;
-    font-size: 16px;
+  margin: 2px 8px 7px 2px;
+  border: solid 1px;
+  border-color: darkgrey;
+  border-radius: 0%;
+  overflow: auto;
+  padding: 0px 0px 0px 5px;
+  font-size: 16px;
 }
 
 .noteText {
-    font-size: 14px;
-    white-space: pre-wrap;
-    width: 87%;
-    float: left;
-    overflow: hidden;
+  font-size: 14px;
+  white-space: pre-wrap;
+  width: 87%;
+  float: left;
+  overflow: hidden;
 }
 
 .noteImage {
-    display: inline-grid;
-    margin-left: 11px;
-    width: 14px;
+  display: inline-grid;
+  margin-left: 11px;
+  width: 14px;
 }
 
 .noteImage:hover {
-    cursor: pointer;
-    width: 16px;
+  cursor: pointer;
+  width: 16px;
 }

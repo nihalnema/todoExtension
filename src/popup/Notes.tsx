@@ -1,49 +1,80 @@
+// React component for Notes page
 import React from "react";
 import "./Notes.scss";
-import { NotesStorage } from "../storage/NotesStorage";
+import { controller } from "./NotesFolder";
 
-let controller = new NotesStorage();
-type Props = { back: any , folderId:number,folderName:string };
+/**
+ * @param back to go back to previous component
+ * @param folderId ID of folder containing notes
+ * @param folderName name of folder
+ */
+type Props = { back: any; folderId: number; folderName:string };
+
+/**
+ * @param hidden to toggle visibility of add notes form
+ * @param addedNote to store the current input from textarea
+ * @param notes array of all notes in folder
+ */
 type State = { hidden: boolean; addedNote: string; notes: any };
 
+// component class for Notes
 class Notes extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      hidden: false,
+      hidden: true,
       addedNote: "",
       notes: [],
     };
-    const loadNotes = async () => {
-      let notesArray: any = await controller.getNotes(this.props.folderId);
-      this.setState({ notes: notesArray });
-      console.log(notesArray);
-    };
-    loadNotes();
+    this.loadNotes();
   }
 
-  displayForm = (event) => {
-    this.setState({ hidden: true });
+  /**
+   * load all the notes from a folder
+   */
+  loadNotes = async () => {
+    // get all the notes in notesArray corresponding to folderId
+    let notesArray: any = await controller.getNotes(this.props.folderId);
+    this.setState({ notes: notesArray });
+    console.log(notesArray);
   };
 
-  hideForm = async (event) => {
+  /**
+   * sets the hidden state variable to false, to render addNotes div
+   * @param event which invoked the function
+   */
+  displayForm = (event) => {
+    this.setState({ hidden: false });
+  };
+
+  /**
+   * add notes to the folder
+   * @param event which invoked the function
+   */
+  addNote = async (event) => {
     if (this.state.addedNote != "") {
+      //adds notes to the correspoding folderId
       let note = await controller.addNote(this.props.folderId,this.state.addedNote);
       console.log(note);
+      //state addedNote changed to "" after note gets added to folder
       this.setState({ addedNote: "" });
-      this.setState({ hidden: false });
+      //form gets hidden after note gets added to folder
+      this.setState({ hidden: true });
     }
   };
 
+  /**
+   * deletes a note from folder
+   * @param id ID of note which is to be deleted
+   * @param event which invoked the function
+   */
   deleteNote = async (id, event) => {
-    let rem = await controller.removeNote(this.props.folderId,id);
-    console.log(rem);
+    let rem = await controller.removeNote(this.props.folderId, id);
   };
 
-  handleChange = (event) => {
-    this.setState({ addedNote: event.target.value });
-  };
-
+  /**
+   *  notes being loaded each time any of the state gets updated 
+   */
   componentDidUpdate() {
     const loadNotes = async () => {
       let notesArray: any = await controller.getNotes(this.props.folderId);
@@ -52,6 +83,9 @@ class Notes extends React.Component<Props, State> {
     loadNotes();
   }
 
+  /**
+   * to render Notes component in the DOM
+   */
   render() {
     return (
       <div style={{ width: 300 }}>
@@ -68,7 +102,7 @@ class Notes extends React.Component<Props, State> {
             <img onClick={this.displayForm.bind(this)} src="images/addNote.png" />
           </div>
         </div>
-        {this.state.hidden ? (
+        {!this.state.hidden ? (
           <>
             <div className="form">
               <textarea
@@ -76,18 +110,20 @@ class Notes extends React.Component<Props, State> {
                 placeholder="Add Notes"
                 className="textInput"
                 value={this.state.addedNote}
-                onChange={this.handleChange}
+                onChange={(event) =>
+                  this.setState({ addedNote: event.target.value })
+                }
               ></textarea>
               <button
                 className="cancelButton"
-                onClick={() => this.setState({ hidden: false })}
+                onClick={() => this.setState({ hidden: true })}
               >
                 CANCEL
               </button>
               <button
                 className="addButton"
                 id="addButton"
-                onClick={this.hideForm.bind(this)}
+                onClick={this.addNote.bind(this)}
               >
                 ADD
               </button>

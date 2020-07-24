@@ -1,17 +1,19 @@
 //React component for Home page of Extension
-
 import React from "react";
 import "./HomePage.scss";
 import NotesFolder from "./NotesFolder";
 import BookmarksFolder from "./BookmarksFolder";
+
 type Props = {};
 type State = { pageType: string };
+
 // Componect class for Home page.
 class HomePage extends React.Component<Props, State> {
+  
   state = { pageType: "homePage" };
 
   /**
-   * Change the state of page depending on the event which invoked it.
+   * to toggle visibility between home, notesFolder, linksFolder pages
    * @param data To set state of page according to data value.
    * @param event Event which invoked the function.
    */
@@ -31,6 +33,7 @@ class HomePage extends React.Component<Props, State> {
     }
   };
 
+  //to render HomePage in DOM
   render() {
     if (this.state.pageType == "homePage") {
       return (

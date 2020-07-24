@@ -1,11 +1,25 @@
+//react component for Note Folders
 import React from "react";
 import "./Notes.scss";
 import "./Folder.scss";
 import { NotesStorage } from "../storage/NotesStorage";
 import Notes from "./Notes";
 
-let controller = new NotesStorage();
+// instance of NotesStorage
+export let controller = new NotesStorage();
+
+/**
+ * @param back to go back to previous page
+ */
 type Props = { back: any };
+
+/**
+ * @param hidden to toggle the visibility of add folder form
+ * @param addedFolder name of added folder
+ * @param folder array of all note folders
+ * @param pageType to toggle visibility between folders and notes page
+ * @param folderId ID of folder
+ */
 type State = {
   hidden: boolean;
   addedFolder: string;
@@ -15,26 +29,38 @@ type State = {
   folderName: string;
 };
 
+//component class for NotesFolder
 class NotesFolder extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      hidden: false,
+      hidden: true,
       addedFolder: "",
       folder: [],
       pageType: "folder",
       folderId: undefined,
       folderName: undefined,
     };
-
-    const loadFolders = async () => {
-      let folderArray: any = await controller.getFolder();
-      this.setState({ folder: folderArray });
-      console.log(folderArray);
-    };
-    loadFolders();
+    this.loadFolders();
   }
+  
+  /**
+   * load all the folders containing notes
+   */
+  loadFolders = async () => {
+    //get all the folders which contain notes
+    let folderArray: any = await controller.getFolder();
+    this.setState({ folder: folderArray });
+    console.log(folderArray);
+  };
 
+
+  /**
+   * to toggle visibility between folders and notes page
+   * @param id ID of folder 
+   * @param name name of folder
+   * @param event Event which invoked the function.
+   */
   viewNotes = (id, name, event) => {
     if (id != undefined) {
       this.setState((prevState) => ({
@@ -51,28 +77,43 @@ class NotesFolder extends React.Component<Props, State> {
     }
   };
 
-  displayForm = (event) => {
-    this.setState({ hidden: true });
+  /**
+   * sets the hidden state variable to false, to render addFolder div
+   * @param event which invoked the function
+   */
+  displayFolderForm = (event) => {
+    this.setState({ hidden: false });
   };
 
-  hideForm = async (event) => {
+  /**
+   * adds folder
+   * @param event which invoked the function
+   */
+  addFolder = async (event) => {
     if (this.state.addedFolder != "") {
+      // adds folder to the storage
       let folder = await controller.addFolder(this.state.addedFolder);
       console.log(folder);
+      // state addedFolder is set to "" after adding folder
       this.setState({ addedFolder: "" });
-      this.setState({ hidden: false });
+      // state hidden set to true to hide the addFolders form 
+      this.setState({ hidden: true });
     }
   };
 
+  /**
+   * deletes a folder from storage
+   * @param id ID of folder which is to be deleted
+   * @param event which invoked the function
+   */
   deleteFolder = async (id, event) => {
     let rem = await controller.removeFolder(id);
     console.log(rem);
   };
 
-  handleChange = (event) => {
-    this.setState({ addedFolder: event.target.value });
-  };
-
+  /**
+   *  all note folders being loaded each time any of the state gets updated 
+   */
   componentDidUpdate() {
     const loadNotes = async () => {
       let folderArray: any = await controller.getFolder();
@@ -81,6 +122,9 @@ class NotesFolder extends React.Component<Props, State> {
     loadNotes();
   }
 
+  /**
+   * render the folder page into DOM
+   */
   render() {
     if (this.state.pageType == "folder") {
       return (
@@ -95,13 +139,10 @@ class NotesFolder extends React.Component<Props, State> {
           <div className="header">
             <div className="addNotes">Note Folders</div>
             <div className="addNoteImage">
-              <img
-                onClick={this.displayForm.bind(this)}
-                src="images/addFolder.png"
-              />
+              <img onClick={this.displayFolderForm.bind(this)} src="images/addFolder.png" />
             </div>
           </div>
-          {this.state.hidden ? (
+          {!this.state.hidden ? (
             <>
               <div className="form">
                 <textarea
@@ -109,18 +150,18 @@ class NotesFolder extends React.Component<Props, State> {
                   placeholder="Folder Name"
                   className="textInput"
                   value={this.state.addedFolder}
-                  onChange={this.handleChange}
+                  onChange={(event)=>{this.setState({ addedFolder: event.target.value })}}
                 ></textarea>
                 <button
                   className="cancelButton"
-                  onClick={() => this.setState({ hidden: false })}
+                  onClick={() => this.setState({ hidden: true })}
                 >
                   CANCEL
                 </button>
                 <button
                   className="addButton"
                   id="addButton"
-                  onClick={this.hideForm.bind(this)}
+                  onClick={this.addFolder.bind(this)}
                 >
                   ADD
                 </button>
