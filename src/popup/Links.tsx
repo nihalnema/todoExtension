@@ -1,7 +1,7 @@
 // React component for Links page
 import React from "react";
-import "./Bookmark.scss";
-import { controller } from "./BookmarksFolder";
+import "./Links.scss";
+import { controller } from "./LinksFolder";
 
 /**
  * @param back to go back to previous component
@@ -26,7 +26,7 @@ type State = {
 };
 
 //Component class for Links
-class Bookmarks extends React.Component<Props, State> {
+class Links extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -213,4 +213,4 @@ class Bookmarks extends React.Component<Props, State> {
   }
 }
 
-export default Bookmarks;
+export default Links;

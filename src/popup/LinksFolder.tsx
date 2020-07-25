@@ -3,7 +3,7 @@ import React from "react";
 import "./Notes.scss";
 import "./Folder.scss"
 import { LinksStorage } from "../storage/LinksStorage";
-import Bookmarks from "./Bookmarks";
+import Links from "./Links";
 
 // instance of LinksStorage
 export let controller = new LinksStorage();
@@ -31,7 +31,7 @@ type State = {
 };
 
 //component class for LinksFolder
-class BookmarksFolder extends React.Component<Props, State> {
+class LinksFolder extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -201,10 +201,10 @@ class BookmarksFolder extends React.Component<Props, State> {
       );
     }else{
         return(
-            <Bookmarks back={this.viewLinks} folderId={this.state.folderId} folderName={this.state.folderName}/>
+            <Links back={this.viewLinks} folderId={this.state.folderId} folderName={this.state.folderName}/>
         )
     }
   }
 }
 
-export default BookmarksFolder;
+export default LinksFolder;
